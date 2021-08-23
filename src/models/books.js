@@ -7,7 +7,10 @@ class Books extends Sequelize.Model {
       author: Sequelize.STRING,
       realeased_date: Sequelize.DATE,
       gender: Sequelize.STRING,
-      isAvaliable: Sequelize.BOOLEAN,
+      isAvaliable: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
     }, {
       sequelize
     })
