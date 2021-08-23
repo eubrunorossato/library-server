@@ -6,6 +6,6 @@ const models = [Books];
 
 module.exports = () => {
   const connection = new Sequelize(databaseConfig)
-  connection.sync({ force: true });
+  connection.sync();
   models.map(model => model.init(connection));
 }
