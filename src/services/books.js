@@ -7,12 +7,11 @@ const checkValues = (book) => {
 };
 
 module.exports = {
-  create: async (body) => {
+  create: async (body, imgBuffer) => {
     try {
       checkValues(body)
       const { name, author, gender, realeased_date } = body;
-      const book = await Books.create({ name, author, gender, realeased_date });
-      console.log(book);
+      const book = await Books.create({ name, author, gender, realeased_date, book_picture: imgBuffer });
       return {
         code: 200,
         message: `Book ${book.name} was registered sucessfully`
