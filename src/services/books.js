@@ -2,8 +2,8 @@ const Books = require('../models/books');
 const { connection } = require('../database/index');
 const { QueryTypes } = require('sequelize');
 
-const checkValues = (book) => {
-  if (book.name === '' || book.author === '' || book.gender === '' || book.realeased_date === '' || book.resume === '' || (!book.name || !book.author || !book.gender || !book.realeased_date || !book.resume)) {
+const checkValues = (book, imgBuffer) => {
+  if (book.name === '' || book.author === '' || book.gender === '' || book.realeased_date === '' || book.resume === '' || (!book.name || !book.author || !book.gender || !book.realeased_date || !book.resume || imgBuffer === undefined || imgBuffer === null || imgBuffer === '')) {
     throw new Error('Missing required fields');
   }
 };
@@ -11,7 +11,9 @@ const checkValues = (book) => {
 module.exports = {
   create: async (body, imgBuffer) => {
     try {
-      checkValues(body)
+      console.log('1', imgBuffer);
+      checkValues(body, imgBuffer)
+      console.log('2', imgBuffer);
       const { name, author, gender, realeased_date, resume } = body;
       const book = await Books.create({ name, author, gender, realeased_date, book_picture: imgBuffer, resume });
       return {
