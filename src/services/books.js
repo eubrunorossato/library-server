@@ -11,9 +11,7 @@ const checkValues = (book, imgBuffer) => {
 module.exports = {
   create: async (body, imgBuffer) => {
     try {
-      console.log('1', imgBuffer);
       checkValues(body, imgBuffer)
-      console.log('2', imgBuffer);
       const { name, author, gender, realeased_date, resume } = body;
       const book = await Books.create({ name, author, gender, realeased_date, book_picture: imgBuffer, resume });
       return {
