@@ -6,7 +6,7 @@ class Books extends Sequelize.Model {
       name: Sequelize.STRING,
       author: Sequelize.STRING,
       realeased_date: Sequelize.DATE,
-      gender: Sequelize.STRING,
+      genre: Sequelize.STRING,
       resume: {
         type: Sequelize.STRING,
         allowNull: false,
