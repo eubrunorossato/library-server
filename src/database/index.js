@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const Books = require('../models/book');
-// const Author = require('../models/author');
+const Author = require('../models/author');
 const Genre = require('../models/genre');
 const databaseConfig = require('../config/database');
 
-const models = [Genre, Books];
+const models = [Genre, Books, Author];
 const connection = new Sequelize(databaseConfig);
 
 const createConnection = () => {

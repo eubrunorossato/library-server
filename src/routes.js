@@ -1,7 +1,14 @@
 const books = require('./services/books');
 const genre = require('./services/genre');
+const auhtor = require('./services/author');
 
 module.exports = (app) => {
+  app.post('/api/author/create', async (req, res, next) => {
+    const { code, message } = await auhtor.create(req.body);
+    res.status(code).json(message);
+    next();
+  });
+
   app.post('/api/genre/create', async (req, res, next) => {
     const { code, message } = await genre.create(req.body);
     res.status(code).json(message);

@@ -13,8 +13,8 @@ class Book extends Model {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        author: {
-          type: Sequelize.STRING,
+        author_id: {
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
         genre_id: {
@@ -41,6 +41,9 @@ class Book extends Model {
   static associate(models) {
     this.belongsTo(models.Genre, {
       foreignKey: 'genre_id',
+    });
+    this.belongsTo(models.Author, {
+      foreignKey: 'author_id',
     });
   }
 };
