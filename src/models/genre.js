@@ -1,17 +1,25 @@
-const Sequelize = require('sequelize');
+const {Sequelize, Model } = require('sequelize');
 
-class Genre extends Sequelize.Model {
+class Genre extends Model {
   static init(sequelize) {
-    super.init({
+    super.init(
+      {
         id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
         },
-        name: Sequelize.STRING,
-    }, {
-        sequelize
-    })
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+      },
+      {
+        sequelize,
+        tableName: 'genres',
+      }
+    );
+    return this;
   }
 };
 
