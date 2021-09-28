@@ -27,12 +27,12 @@ module.exports = {
   },
   getAll: async () => {
     try {
-      const genres = await connection.query('select * from "authors"', {
+      const authors = await connection.query('select * from "authors"', {
         type: QueryTypes.SELECT
       });
       return {
         code: 200,
-        genres,
+        authors,
       }
     } catch (error) {
       return {

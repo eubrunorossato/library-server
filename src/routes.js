@@ -8,6 +8,11 @@ module.exports = (app) => {
     res.status(code).json(message);
     next();
   });
+  app.get('/api/author/getAll', async (req, res, next) => {
+    const response = await auhtor.getAll();
+    res.json(response);
+    next();
+  });
 
   app.post('/api/genre/create', async (req, res, next) => {
     const { code, message } = await genre.create(req.body);
