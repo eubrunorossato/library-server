@@ -27,7 +27,7 @@ module.exports = {
   },
   getAll: async () => {
     try {
-      const genres = await connection.query('select * from "Genres"', {
+      const genres = await connection.query('select * from "genres"', {
         type: QueryTypes.SELECT
       });
       return {
