@@ -17,6 +17,11 @@ class Book extends Model {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        avaliables: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          defaultValue: 1,
+        },
         genre_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
