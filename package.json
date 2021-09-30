@@ -20,5 +20,8 @@
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.2",
     "typeorm": "^0.2.37"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.5"
   }
 }
