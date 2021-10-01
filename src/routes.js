@@ -1,8 +1,23 @@
 const books = require('./services/books');
 const genre = require('./services/genre');
 const auhtor = require('./services/author');
+const user = require('./services/user');
+const {createAuthToken} = require('./services/auth/index')
 
 module.exports = (app) => {
+  app.post('/login', async (req, res, next) => {
+    const { body } = req;
+    const accessToken = createAuthToken(body);
+    const userLogin = await user.getUserByEmail(body);
+    res.json({accessToken, user: userLogin.user});
+  });
+
+  app.post('/api/user/create', async (req, res, next) => {
+    const { body } = req;
+    const { code, message } = await user.create(body);
+    res.status(code).json(message)
+  });
+
   app.post('/api/author/create', async (req, res, next) => {
     const { code, message } = await auhtor.create(req.body);
     res.status(code).json(message);
