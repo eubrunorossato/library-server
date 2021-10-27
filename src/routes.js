@@ -5,9 +5,9 @@ const user = require('./services/user');
 const { ensureAuth } = require('./services/auth/index');
 
 module.exports = (app) => {
-  // app.use('/api/', (req, res, next) => {
-  //   ensureAuth(req, res, next);
-  // });
+  app.use('/api/', (req, res, next) => {
+    ensureAuth(req, res, next);
+  });
 
   app.get('/check/register/:email', async (req, res, next) => {
     const userLogged = await user.getUserByEmail(req.params.email);
