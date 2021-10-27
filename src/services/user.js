@@ -37,11 +37,11 @@ module.exports = {
       }
     }
   },
-  getUserByEmail: async (body) => {
+  getUserByEmail: async (email) => {
     try {
       const user = await User.findOne({
         where: {
-          email: body.email
+          email: email
         }
       });
       return {

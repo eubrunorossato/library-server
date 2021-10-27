@@ -1,9 +1,16 @@
 const jwt = require('jsonwebtoken');
 
-const createAuthToken = (body) => {
-    const accessToken = jwt.sign(body, process.env.TOKEN_KEY);
-    return accessToken;
+const ensureAuth = (req, res, next) => {
+    jwt.verify(req.headers ? req.headers.authorization : null, process.env.TOKEN_KEY, (err, decoded) => {
+        if (err) {
+            console.log(err);
+            res.redirect(`${process.env.FRONTEND_URL}`)
+        } else {
+            req.user = decoded;
+            next();
+        }
+    });
 };
 
 
-module.exports = {createAuthToken}
+module.exports = { ensureAuth }
