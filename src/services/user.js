@@ -46,7 +46,7 @@ module.exports = {
       });
       return {
         code: 200,
-        user,
+        userRegister: user,
       }
     } catch (error) {
       return {
