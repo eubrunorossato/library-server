@@ -35,8 +35,8 @@ module.exports = {
           ]
         },
         include: [
-          {model: Genre},
-          {model: Author}
+          { model: Genre },
+          { model: Author }
         ]
       })
       return {
@@ -49,5 +49,5 @@ module.exports = {
         message: error.message
       }
     }
-  }
+  },
 }
