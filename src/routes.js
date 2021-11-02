@@ -72,8 +72,8 @@ module.exports = (app) => {
     next();
   });
 
-  app.get('/api/request/getAll', async (req, res, next) => {
-    const { code, data } = await request.getAll();
+  app.get('/api/request/getAllById/:id', async (req, res, next) => {
+    const { code, data } = await request.getAllById(req.params.id);
     res.status(code).json(data);
     next();
   });

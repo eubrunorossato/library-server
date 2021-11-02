@@ -54,9 +54,12 @@ module.exports = {
             }
         }
     },
-    getAll: async () => {
+    getAllById: async (id) => {
         try {
             const requestsList = await Requests.findAll({
+                where: {
+                    book_id: id
+                },
                 include: {
                     model: User
                 },
