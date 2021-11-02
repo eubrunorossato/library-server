@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const Book = require('../models/book');
 const Author = require('../models/author');
 const Genre = require('../models/genre');
-const User = require('../models/users');
+const User = require('../models/user');
 const Requests = require('../models/requests')
 const databaseConfig = require('../config/database');
 

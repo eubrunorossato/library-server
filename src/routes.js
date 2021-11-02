@@ -3,7 +3,6 @@ const genre = require('./services/genre');
 const auhtor = require('./services/author');
 const user = require('./services/user');
 const request = require('./services/requests');
-const sms = require('./services/twilio/index');
 const { ensureAuth } = require('./services/auth/index');
 
 module.exports = (app) => {
@@ -18,11 +17,6 @@ module.exports = (app) => {
     } else {
       res.status(code).json({ userRegister: true });
     }
-  });
-
-  app.post('/api/sms/send', async (req, res, next) => {
-    const { code, isSent } = await sms(req.body);
-    res.status(code).json(isSent)
   });
 
   app.get('/api/user/getUserByEmail/:email', async (req, res, next) => {
@@ -74,6 +68,12 @@ module.exports = (app) => {
 
   app.post('/api/request/create', async (req, res, next) => {
     const { code, data } = await request.create(req);
+    res.status(code).json(data);
+    next();
+  });
+
+  app.get('/api/request/getAll', async (req, res, next) => {
+    const { code, data } = await request.getAll();
     res.status(code).json(data);
     next();
   });

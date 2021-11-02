@@ -1,4 +1,4 @@
-const User = require('../models/users');
+const User = require('../models/user');
 
 const checkValues = (user) => {
   if (user.name === '' || !user.name || user.nickname === '' || !user.nickname || user.email === '' || !user.email || user.celphone === '' || !user.celphone || user.isByGoogle === '' || (user.isByGoogle === false && (user.password === '' || !user.password))) {

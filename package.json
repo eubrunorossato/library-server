@@ -17,15 +17,14 @@
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.7.0",
     "nodemon": "^2.0.12",
     "passport": "^0.5.0",
     "passport-ci-oidc": "^2.0.4",
     "pg": "^8.0.3",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.2",
-    "twilio": "^3.70.0",
-    "typeorm": "^0.2.37"
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "cookie-parser": "^1.4.5"

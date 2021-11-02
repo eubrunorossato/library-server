@@ -17,10 +17,6 @@ class Requests extends Model {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
-        celphone: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
         pick_date: {
           type: Sequelize.DATE,
           allowNull: false,
@@ -30,6 +26,10 @@ class Requests extends Model {
           allowNull: false,
         },
         status: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        pick_code: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },

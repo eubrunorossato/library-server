@@ -3,6 +3,7 @@ const session = require('express-session');
 const { createConnection } = require('../database/index');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
+const email = require('../services/emailSender');
 const routes = require('../routes');
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(session({
   saveUninitialized: 'true',
   secret: sessionSecret,
   cookie: {
-      maxAge: 8 * 60 * 60 * 1000
+    maxAge: 8 * 60 * 60 * 1000
   }
 }));
 routes(app);
