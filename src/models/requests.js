@@ -28,6 +28,7 @@ class Requests extends Model {
         status: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          defaultValue: 1,
         },
         pick_code: {
           type: Sequelize.INTEGER,

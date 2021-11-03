@@ -1,8 +1,9 @@
 const Requests = require('../models/requests');
+const Books = require('../models/book');
+const { Op } = require('sequelize');
 const User = require('../models/user');
 const sendEmail = require('./emailSender');
 const user = require('./user');
-const { request } = require('express');
 
 const checkValues = (request) => {
     if (!request.pick_date || !request.return_date || !request.email) {
@@ -31,6 +32,19 @@ const formatData = (list) => {
         request.return_date = `${returnDay}/${returnMonth}/${returnYear}`;
     });
 };
+
+const hasBookScheduled = async (id) => {
+    const request = await Requests.findAll({
+        where: {
+            user_id: id,
+            status: {
+                [Op.ne]: 4,
+            }
+        }
+    });
+    return request.length === 0;
+};
+
 module.exports = {
     create: async (req) => {
         try {
@@ -39,18 +53,28 @@ module.exports = {
             const { userRegister } = await user.getUserByEmail(req.user.email);
             const { id } = userRegister;
             const pick_code = buildEmailInfo(id, book_id);
-            const request = await Requests.create({ pick_date, return_date, email, user_id: id, status: 1, book_id, pick_code });
-            await removeOneBookAvaliable(book_id);
-            await sendEmail(req.user.email, 'Agendamento para empréstimo de livro', pick_code);
-            return {
-                code: 200,
-                data: { ...request }
+            const canSchedule = await hasBookScheduled(id);
+            if (canSchedule) {
+                const request = await Requests.create({ pick_date, return_date, email, user_id: id, book_id, pick_code });
+                await removeOneBookAvaliable(book_id);
+                await sendEmail(req.user.email, 'Agendamento para empréstimo de livro', pick_code);
+                return {
+                    code: 200,
+                    data: { ...request }
+                }
+            } else {
+                return {
+                    code: 500,
+                    data: {
+                        message: 'Você ja tem um livro alugado. Cancele sua solicitacao ou devolva o livro alugado.'
+                    }
+                }
             }
 
         } catch (error) {
             return {
                 code: 500,
-                message: error.message
+                data: error.message
             }
         }
     },
